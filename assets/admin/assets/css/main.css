@@ -1,0 +1,16 @@
+.erro {
+    color: red;
+    text-transform: capitalize;
+}
+.erro p {
+    color: red;
+    font-size: smaller;
+    margin: 0;
+}
+.headoda {
+    text-align: center;
+}
+.headoda p {
+    font-weight: bold;
+    font-size: ;
+}
