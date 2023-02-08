@@ -14,7 +14,7 @@ class Frontechange extends CI_Controller {
 	{
         $info = array();
         $info['nono'] = '';
-        if($this->input->get('idobjet')!==null){
+        if($this->input->get('nono')!==null){
             $info['nono'] = 'Please choose an object';
         }
         $info['name'] = $this->session->userdata('name');
@@ -22,6 +22,10 @@ class Frontechange extends CI_Controller {
         $info['objet'] = $this->objet_model->getDetailObject(intval($this->input->get('idobjet')));
         $id = $this->session->userdata('logged');
         $info['list'] = $this->objet_model->get_user_list($id);
+        for ($i=0; $i < count($info['list']); $i++) { 
+            $pp = ($info['list'][$i]['prix_estimatif']*100)/$info['objet']['prix_estimatif'];
+            $info['list'][$i]['difference'] = $pp-100;
+        }
         $this->load->view('front',$info);
     }
     public function echanger(){
@@ -30,26 +34,37 @@ class Frontechange extends CI_Controller {
             redirect('frontechange/index?idobjet='.$this->input->get('idobjet').'&nono=');
         }
         $a = explode('&',$link);
-        $b = explode('=',$a[1]);
-        $lemien = intval($b[0]);
+        $ids = array();
+        for($i=1;$i<count($a);$i++){
+            $b = explode('=',$a[$i]);
+            array_push($ids,intval($b[0]));
+        }
         $lautre = intval($this->input->get('idobjet'));
         date_default_timezone_set("Africa/Nairobi");
         $date = date('y-m-d');
         $data = array(
             'idProposeur' => intval($this->session->userdata('logged')),
-            'idObjetAproposer' => $lemien,
             'idProposer' => $this->objet_model->getObjectOwner($lautre),
             'idObjetProposer' => $lautre,
             'dateProposition' => $date,
         );
         $this->db->insert('proposition',$data);
+        $last = $this->proposition_model->getLastId();
+        $last = $last['max'];
+        for($i=0;$i<count($ids);$i++){
+            $data = array(
+                'idProposition' => $last,
+                'idObjet' => $ids[$i]
+            );
+            $this->db->insert('objetaproposer',$data);
+        }
         redirect('front/liste_objet');
     }
     public function myproposition(){
         $data = $this->proposition_model->getSaProposition(intval($this->session->userdata('logged')));
         $info = array();
         $info['name'] = $this->session->userdata('name');
-        $info['contents'] = 'Saproposition.php';
+        $info['contents'] = 'saproposition.php';
         $info['data'] = $data;
         $this->load->view('front',$info);
     }
@@ -72,7 +87,7 @@ class Frontechange extends CI_Controller {
         redirect('Frontechange/propositionlist');
     }
 
-    public function acceptation($idProposition,$idObjetProposer,$idObjetAProposer,$idProposeur){
+    public function acceptation($idProposition,$idObjetProposer,$idProposeur){
         date_default_timezone_set("Africa/Nairobi");
         $date = date('y-m-d h:m:s');
         $data = array(
@@ -88,26 +103,52 @@ class Frontechange extends CI_Controller {
         );
         $this->db->insert('historique',$data1);
 
-        $data2 = array(
-            'idObjet' => $idObjetAProposer,
-            'idUser' => $idProposeur,
-            'DerniereDate' => $date,
-        );
-        $this->db->insert('historique',$data2);
-
-        $sql = "update objet set idUser = ".intval($this->session->userdata('logged'))." where id = ".$idObjetAProposer;
-        $this->db->query($sql);
+        $ObjetAproposer = $this->proposition_model->getObjetAproposerList($idProposition);
+        for ($i=0; $i < count($ObjetAproposer); $i++) { 
+                $data2 = array(
+                'idObjet' => $ObjetAproposer[$i]['idObjet'],
+                'idUser' => $idProposeur,
+                'DerniereDate' => $date,
+                );
+                $this->db->insert('historique',$data2);
+                $sql = "update objet set idUser = ".intval($this->session->userdata('logged'))." where id = ".$ObjetAproposer[$i]['idObjet'];
+                $this->db->query($sql);
+        }
         $sql = "update objet set idUser = ".$idProposeur." where id = ".$idObjetProposer;
         $this->db->query($sql);
-        redirect('Frontechange/propositionlist');
+        redirect('frontechange/propositionlist');
     }
     public function getHisto($id){
         $this->load->model('Historique_model');
         $data = $this->Historique_model->getAllHistorique($id);
         $info = array();
         $info['name'] = $this->session->userdata('name');
-        $info['contents'] = 'Historique.php';
+        $info['contents'] = 'historique.php';
         $info['data'] = $data;
         $this->load->view('front',$info);
+    }
+    public function delete($idP){
+        $info = array();
+        $info['name'] = $this->session->userdata('name');
+        $info['contents'] = 'propositionRefuser.php';
+        $this->load->model('Proposition_model');
+        $this->Proposition_model->delete($idP);
+        redirect('Frontechange/propositionRefuser');
+    }
+    public function propositionRefuser(){
+        $data = $this->proposition_model->getPropositionRefuser(intval($this->session->userdata('logged')));
+        $info = array();
+        $info['name'] = $this->session->userdata('name');
+        $info['contents'] = 'propositionRefuser.php';
+        $info['data'] = $data;
+        $this->load->view('front',$info);
+    }  
+    public function delete1($idP){
+        $info = array();
+        $info['name'] = $this->session->userdata('name');
+        $info['contents'] = 'saproposition.php';
+        $this->load->model('Proposition_model');
+        $this->Proposition_model->delete($idP);
+        redirect('Frontechange/myproposition');
     }
 }

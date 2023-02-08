@@ -24,4 +24,23 @@ class Back extends CI_Controller {
         $info['statcount'] = $cat_list;
         $this->load->view('back',$info);
     }
+    public function loadCategory(){
+        $info = array();
+        $info['contents'] = 'insertCategory';
+        if(isset($_GET['message'])){
+            $this->load->view('back',$info,$_GET['message']);
+        }
+        $this->load->view('back',$info);
+    } 
+    public function insert_category(){
+        $nomCategory = $this->input->get("txt");
+        if(strlen(trim($nomCategory))==0){
+            redirect('Back/loadCategory?erreur=');
+        }
+        $data = array(
+            'name' => $nomCategory,
+        );
+        $this->db->insert('category',$data);
+        redirect('Back/loadCategory?message=');
+    }
 }

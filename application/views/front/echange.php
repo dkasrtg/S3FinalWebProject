@@ -113,15 +113,15 @@
                                         <tr>
                                             <th>
                                                 <div class="checkbox">
-                                                    <input id="checkAll" type="checkbox">
-                                                    <label for="checkAll" class="m-b-0"></label>
+                                                    <!-- <input id="checkAll" type="checkbox">
+                                                    <label for="checkAll" class="m-b-0"></label> -->
                                                 </div>
                                             </th>
                                             <th>ID</th>
                                             <th>Product</th>
                                             <th>Category</th>
                                             <th>Price</th>
-                                            <th></th>
+                                            <th>Difference</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,9 +130,9 @@
                                             ?>
                                             <tr>
                                             <td>
-                                                <div class="checkbox">
-                                                <input id="radio1" name="<?php echo $list[$i]['id']?>" type="radio">
-                                                <label for="radio1"></label>
+                                            <div class="checkbox">
+                                                    <input id="check-item-<?php echo $i+1?>" type="checkbox" name="<?php echo $list[$i]['id']?>">
+                                                    <label for="check-item-<?php echo $i+1?>" class="m-b-0"></label>
                                                 </div>
                                             </td>
                                             <td>
@@ -147,7 +147,7 @@
                                             <td><?php echo $list[$i]['category']?></td>
                                             <td>Ar<?php echo $list[$i]['prix_estimatif']?></td>
                                             <td class="text-right">
-                                                
+                                                <?php echo $list[$i]['difference']?>%
                                             </td>
                                         </tr>
                                             <?php

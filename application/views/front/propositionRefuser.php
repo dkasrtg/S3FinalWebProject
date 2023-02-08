@@ -1,5 +1,5 @@
 <div class="page-header">
-                        <h2 class="header-title">Mes propositions en attente</h2>
+                        <h2 class="header-title">Mes propositions refusees</h2>
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -20,6 +20,7 @@
                                             <th>Prix objet souhaite</th>
                                             <th>A echanger contre ma/mon/mes</th>
                                             <th>Date</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -67,6 +68,7 @@
                                                         <td>
                                                             Ar <?php echo $data[$i]['ObjetAproposer'][$j]['prix_estimatif']?>
                                                         </td>
+                                                        
                                                     </tr>
                                                     <?php
                                                 }
@@ -74,8 +76,9 @@
                                                 </table>
                                             </td>
                                             <td><?php echo $data[$i]['dateProposition']?></td>
-                                            <td><a href="delete1/<?php echo $data[$i]['idProposition']; ?>"> Annuler </a></td>
-
+                                            <td>
+                                                            <a href="<?php su('Frontechange/delete/'.$data[$i]['idProposition'])?>"> Supprimer </a>
+                                                        </td>
                                         </tr>
                                             <?php
                                         }

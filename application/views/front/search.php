@@ -60,6 +60,8 @@
                                             <th>ID</th>
                                             <th>Product</th>
                                             <th>Price</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,6 +85,12 @@
                                                 </div>
                                             </td>
                                             <td>Ar<?php echo $list[$i]['prix_estimatif']?></td>
+                                            <td class="text-right">
+                                                <a href="<?php su('frontechange/index?idobjet='.$list[$i]['id'])?>">Echanger</a>
+                                            </td>
+                                            <td>
+                                                <a href="<?php su('Frontechange/getHisto/'.$list[$i]['id'])?>">Voir Historique</a>
+                                            </td>
                                         </tr>
                                             <?php
                                         }

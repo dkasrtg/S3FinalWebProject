@@ -105,10 +105,13 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="<?php su('frontechange/myproposition')?>">Mes proposition</a>
+                                    <a href="<?php su('frontechange/myproposition')?>">Mes proposition en attente </a>
                                 </li>
                                 <li>
-                                    <a href="<?php su('frontechange/propositionlist')?>">Propositions recus</a>
+                                    <a href="<?php su('frontechange/propositionRefuser')?>">Mes proposition Refuser </a>
+                                </li>
+                                <li>
+                                    <a href="<?php su('frontechange/propositionlist')?>"> Propositions recus </a>
                                 </li>
                             </ul>
                         </li>

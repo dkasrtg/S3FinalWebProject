@@ -14,6 +14,10 @@ class Logger extends CI_Controller {
             'email' => '',
             'password' => ''
         );
+        if(!$this->session->has_userdata('inputs')){
+            $inputs['email'] = "admin@admin.com";
+            $inputs['password'] = "admin";
+        }
         if($this->session->has_userdata('inputs')){
             $inputs['email'] = $this->session->userdata('inputs')['email'];
             $inputs['password'] = $this->session->userdata('inputs')['password'];

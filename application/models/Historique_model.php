@@ -7,12 +7,12 @@ class Historique_model extends CI_Model
         $result = [];
         $i=0;
         $sql = "select u.first_name as first_name,u.last_name as last_name,h.DerniereDate as DerniereDate,o.id as idObjet 
-        from Historique h
+        from historique h
         join users u
         on u.id = h.idUser
         join objet o
         on o.id = h.idObjet
-        where h.idObjet = ".$id;
+        where h.idObjet = ".$id." order by h.DerniereDate desc";
         echo $sql;
         $sql = $this->db->query($sql);
         foreach ($sql->result_array() as $row){

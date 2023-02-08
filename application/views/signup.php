@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="d-none d-md-flex p-h-40 justify-content-between">
-                    <span class="">© 2023 S3FinalWebProject</span>
+                    <span class="">HANTANIAINA Mamisoa Tatamo ETU001956- RAKOTOBARISOLO Andrianiaina Fy michael ETU001998- RAKOTOARISON Tiavina Gael ETU001995</span>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a class="text-dark text-link" href="#">Legal</a>

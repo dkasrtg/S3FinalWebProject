@@ -51,6 +51,9 @@
                                             <th>Price</th>
                                             <th></th>
                                             <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,6 +89,15 @@
                                             </td>
                                             <td>
                                                 <a href="<?php su('Frontechange/getHisto/'.$list[$i]['id'])?>">Voir Historique</a>
+                                            </td>
+                                            <td class="text-right">
+                                                <a href="<?php su('front/listecompris?idobjet='.$list[$i]['id'].'&percent=10&price='.$list[$i]['prix_estimatif'])?>">+/-10%</a>
+                                            </td>
+                                            <td>
+                                                <a href="<?php su('front/listecompris?idobjet='.$list[$i]['id'].'&percent=20&price='.$list[$i]['prix_estimatif'])?>">+/-20%</a>
+                                            </td>
+                                            <td>
+                                                <a href="<?php su('front/gererphotos?idobjet='.$list[$i]['id'])?>">Gerer le photos</a>
                                             </td>
                                         </tr>
                                             <?php

@@ -19,7 +19,7 @@ class Frontsearch extends CI_Controller {
         if($this->input->get('txt')!==null && $this->input->get('cat')!==null){
             $txt = $this->input->get('txt');
             $cat = intval($this->input->get('cat'));
-            $rs = $this->search_model->getResult($txt,$cat);
+            $rs = $this->search_model->getResult($txt,$cat,intval($this->session->userdata('logged')));
             $info['list'] = $rs;
             $info['mot'] = str_replace('%','',$txt);
             if($cat!=0){

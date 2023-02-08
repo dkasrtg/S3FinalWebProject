@@ -73,7 +73,9 @@
                                 <li>
                                     <a href="<?php su('back/')?>">Liste</a>
                                 </li>
-
+                                <li>
+                                    <a href="<?php su('back/loadCategory')?>">Ajouter Category</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown open">

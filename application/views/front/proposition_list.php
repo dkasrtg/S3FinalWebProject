@@ -16,8 +16,7 @@
                                             </th>
                                             <th>ID</th>
                                             <th>Proposeur</th>
-                                            <th>Objet propose</th>
-                                            <th>Prix objet propose</th>
+                                            <th>Objets proposes</th>
                                             <th>A echanger contre ma/mon</th>
                                             <th>D une valeur de</th>
                                             <th>Date</th>
@@ -43,12 +42,30 @@
                                                 <?php echo $data[$i]['nomProposeur']." ".$data[$i]['prenomProposeur']?>
                                             </td>
                                             <td>
-                                            <div class="d-flex align-items-center">
+                                            <!-- <div class="d-flex align-items-center">
                                                     <img class="img-fluid rounded" src="<?php bu('assets/images/'.$data[$i]['ObjetProposeurPhotos'][0])?>" style="max-width: 60px" alt="">
                                                     <h6 class="m-b-0 m-l-10"><?php echo $data[$i]['ObjetProposeurTitre']?></h6>
+                                                </div> -->
+                                                <table>
+                                                <?php 
+                                                for ($j=0; $j < count($data[$i]['ObjetAproposer']); $j++) { 
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                        <div class="d-flex align-items-center">
+                                                    <img class="img-fluid rounded" src="<?php bu('assets/images/'.$data[$i]['ObjetAproposer'][$j]['photos'][0])?>" style="max-width: 60px" alt="">
+                                                    <h6 class="m-b-0 m-l-10"><?php echo $data[$i]['ObjetAproposer'][$j]['titre']?></h6>
                                                 </div>
+                                                        </td>
+                                                        <td>
+                                                            Ar <?php echo $data[$i]['ObjetAproposer'][$j]['prix_estimatif']?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                                </table>
                                             </td>
-                                            <td>Ar <?php echo $data[$i]['ObjetProposeurPrixEstimatif']?></td>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <img class="img-fluid rounded" src="<?php bu('assets/images/'.$data[$i]['ObjetProposerPhotos'][0])?>" style="max-width: 60px" alt="">
@@ -60,10 +77,10 @@
                                             </td>
                                             <td><?php echo $data[$i]['dateProposition']?></td>
                                             <td class="text-right">
-                                                <a href="<?php su('Frontechange/acceptation/'.$data[$i]['idProposition'].'/'.$data[$i]['idObjetProposer'].'/'.$data[$i]['idObjetAProposer'].'/'.$data[$i]['idProposeur']); ?>">Accepter</a>
+                                                <a href="<?php su('frontechange/acceptation/'.$data[$i]['idProposition'].'/'.$data[$i]['idObjetProposer'].'/'.$data[$i]['idProposeur']); ?>">Accepter</a>
                                             </td>
                                             <td>
-                                                <a href="<?php su('Frontechange/refus/'.$data[$i]['idProposition']); ?>">Refuser</a>
+                                                <a href="<?php su('frontechange/refus/'.$data[$i]['idProposition']); ?>">Refuser</a>
                                             </td>
                                         </tr>
                                             <?php

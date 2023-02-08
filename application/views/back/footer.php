@@ -3,7 +3,7 @@
 <!-- Footer START -->
 <footer class="footer">
                     <div class="footer-content">
-                        <p class="m-b-0">Copyright © 2023 S3FinalWebProject. All rights reserved.</p>
+                        <p class="m-b-0">HANTANIAINA Mamisoa Tatamo ETU001956- RAKOTOBARISOLO Andrianiaina Fy michael ETU001998- RAKOTOARISON Tiavina Gael ETU001995</p>
                         <span>
                             <a href="#" class="text-gray m-r-15">Term &amp; Conditions</a>
                             <a href="#" class="text-gray">Privacy &amp; Policy</a>

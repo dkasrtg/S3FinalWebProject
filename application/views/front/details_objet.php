@@ -12,7 +12,7 @@
                             <div class="m-b-15">
                                 <button class="btn btn-primary">
                                     <i class="anticon anticon-edit"></i>
-                                    <span>Edit</span>
+                                    <span><a style="color: white;" href="<?php su('front/objet_update?idobjet='.$objet['id'])?>">Edit</a></span>
                                 </button>
                             </div>
                         </div>

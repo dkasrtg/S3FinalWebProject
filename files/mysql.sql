@@ -16,18 +16,18 @@ INSERT INTO users values(null,'Rakoto','Koto','0332300433','koto@gmail.com','kot
 INSERT INTO users values(null,'Rakoto','Bira','0332300433','bira@gmail.com','bira');
 
 
-CREATE TABLE Category(
+CREATE TABLE category(
     id int primary key AUTO_INCREMENT,
     name varchar(50) 
 );
 
 insert into category values(null,'vetement');
+insert into category values(null,'cuisine');
+insert into category values(null,'inforamtique');
 insert into category values(null,'livre');
-insert into category values(null,'DVD');
-insert into category values(null,'ordinateur');
 
 
-CREATE TABLE Objet(
+CREATE TABLE objet(
     id int primary key AUTO_INCREMENT,
     idUser int,
     idCategory int,
@@ -35,39 +35,53 @@ CREATE TABLE Objet(
     description varchar(50),
     photos text,
     prix_estimatif double,
-    foreign key(idUser) references Users(id),
-    foreign key(idCategory) references Category(id)
+    foreign key(idUser) references users(id),
+    foreign key(idCategory) references category(id)
 );
 
-insert into Objet values(null,2,1,'Tennis','Tennis tennis','1639060272-mizuno-wave-rider-25-on-white-1639060104.jpg;1646856223-1626189650-brooks-ghost-14-16261-1646856166.jpg',1000);
-insert into Objet values(null,2,1,'Tennis 00','Tennis tennis','1639060272-mizuno-wave-rider-25-on-white-1639060104.jpg;1646856223-1626189650-brooks-ghost-14-16261-1646856166.jpg',2000);
-insert into Objet values(null,3,1,'Tennis 2','Tennis tennis','1639060272-mizuno-wave-rider-25-on-white-1639060104.jpg;1646856223-1626189650-brooks-ghost-14-16261-1646856166.jpg',1000);
-insert into Objet values(null,3,1,'Tennis 3','Tennis tennis','1639060272-mizuno-wave-rider-25-on-white-1639060104.jpg;1646856223-1626189650-brooks-ghost-14-16261-1646856166.jpg',1000);
+insert into objet values(null,2,1,'Kiraro','Kiraro','article26.jpg;',1000);
+insert into objet values(null,2,2,'Vilany','Vilany','article9.jpg;',500);
+insert into objet values(null,2,3,'Laptop','Laptop','article15.jpg;',995);
+insert into objet values(null,2,4,'Boky1','Boky1','article25.jpg;',1250);
+insert into objet values(null,3,1,'Robe','Robe','article1.jpg;',2000);
+insert into objet values(null,3,2,'Four','Four','article11.jpg;',510);
+insert into objet values(null,3,3,'Tablette','Tablette','article14.jpg;',3000);
+insert into objet values(null,3,4,'Boky2','Boky2','article24.jpg;',975);
 
 
-CREATE TABLE Proposition(
+CREATE TABLE proposition(
     id int primary key AUTO_INCREMENT,
     idProposeur int references users(id),
-    idObjetAproposer int references Objet(id) on delete cascade,
     idProposer int references users(id),
-    idObjetProposer int references Objet(id) on delete cascade,
-    DateProposition date NOT NULL
+    idObjetProposer int,
+    DateProposition date NOT NULL,
+    foreign key (idObjetProposer) references objet(id) on delete cascade
+);
+CREATE TABLE objetaproposer(
+    id int primary key AUTO_INCREMENT,
+    idProposition int,
+    idObjet int ,
+    foreign key (idProposition) references proposition(id) on delete cascade,
+    foreign key (idObjet) references objet(id) on delete cascade
 );
 
-CREATE TABLE Acceptation(
+CREATE TABLE acceptation(
     id int primary key AUTO_INCREMENT,
-    idProposition int references Proposition(id) on delete cascade,
-    DateAcceptation datetime
+    idProposition int ,
+    DateAcceptation datetime,
+    foreign key(idProposition) references proposition(id) on delete cascade
 );
 
-CREATE TABLE Refus(
+CREATE TABLE refus(
     id int primary key AUTO_INCREMENT,
-    idProposition int references Proposition(id) on delete cascade,
-    DateRefus date
+    idProposition int ,
+    DateRefus date,
+    foreign key(idProposition) references proposition(id) on delete cascade
 );
 create table historique(
     id int primary key AUTO_INCREMENT,
-    idObjet int references Objet(id) on delete cascade,
-    idUser int references Users(id),
-    DerniereDate datetime 
+    idObjet int ,
+    idUser int references users(id),
+    DerniereDate datetime ,
+    foreign key(idObjet) references objet(id) on delete cascade
 );

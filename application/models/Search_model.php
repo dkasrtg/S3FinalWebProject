@@ -4,18 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Search_model extends CI_Model
 {
 
-    public function getResult($txt,$cat){
+    public function getResult($txt,$cat,$logged){
         $result = [];
         $i=0;
         $req = null;
         echo $cat;
         if($cat==0){
-            $req = "select objet.id,category.name,objet.titre,objet.prix_estimatif,objet.photos from objet join category on objet.idcategory=category.id where objet.titre like '%s%s%s'";
-            $req = sprintf($req,'%',$txt,'%');
+            $req = "select objet.id,category.name,objet.titre,objet.prix_estimatif,objet.photos from objet join category on objet.idcategory=category.id where objet.titre like '%s%s%s' and objet.idUser!=%d";
+            $req = sprintf($req,'%',$txt,'%',$logged);
         }
         else{
-            $req = "select objet.id,category.name,objet.titre,objet.prix_estimatif,objet.photos from objet join category on objet.idcategory=category.id where objet.titre like '%s%s%s' and objet.idcategory=%d ";
-            $req = sprintf($req,'%',$txt,'%',$cat);
+            $req = "select objet.id,category.name,objet.titre,objet.prix_estimatif,objet.photos from objet join category on objet.idcategory=category.id where objet.titre like '%s%s%s' and objet.idcategory=%d and objet.idUser!=%d";
+            $req = sprintf($req,'%',$txt,'%',$cat,$logged);
         }
         echo $req;
         $sql = $this->db->query($req);
