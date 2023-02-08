@@ -21,7 +21,7 @@
             <!-- Header START -->
             <div class="header">
                 <div class="logo logo-dark">
-                    <a href="index.html">
+                    <a href="#">
                         <img src="<?php bu('assets/admin/assets/images/logo/Back-office-fuente-pinterest.png')?>" alt="Logo">
                         <img class="logo-fold" src="<?php bu('assets/admin/assets/images/logo/360_F_477734432_l1srDtzmuvtWUTkt6BVaRJ2mW2faXdTo.jpg')?>" alt="Logo"> 
                     </a>
@@ -64,17 +64,31 @@
                                 <span class="icon-holder">
                                     <i class="anticon anticon-dashboard"></i>
                                 </span>
-                                <span class="title">Link</span>
+                                <span class="title">Categories</span>
                                 <span class="arrow">
                                     <i class="arrow-icon"></i>
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Link</a>
+                                    <a href="<?php su('back/')?>">Liste</a>
                                 </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown open">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-dashboard"></i>
+                                </span>
+                                <span class="title">Statistics</span>
+                                <span class="arrow">
+                                    <i class="arrow-icon"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Link</a>
+                                    <a href="<?php su('back/statcount')?>">Nombre</a>
                                 </li>
                             </ul>
                         </li>
@@ -90,7 +104,6 @@
                 <!-- Content Wrapper START -->
                 <div class="main-content">
                     
-                </div>
-                <!-- Content Wrapper END -->
+                
 
                 

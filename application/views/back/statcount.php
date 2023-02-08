@@ -1,26 +1,26 @@
 <div class="page-header">
-                        <h2 class="header-title">Category list</h2>
+                        <h2 class="header-title">Statistiques</h2>
 </div>
 <div class="card">
                         <div class="card-body">
                             <div class="m-t-25">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
-                                        <thead>
+                                        <!-- <thead>
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Category name</th>
                                             </tr>
-                                        </thead>
+                                        </thead> -->
                                         <tbody>
-                                            <?php for ($i=0; $i < count($catlist); $i++) { 
-                                                ?>
                                             <tr>
-                                                <th scope="row"><?php echo $catlist[$i]['id']?></th>
-                                                <td style="text-transform:capitalize"><?php echo $catlist[$i]['name']?></td>
+                                                <th scope="row">Nombre d utilisateurs</th>
+                                                <td><?php echo $statcount['users']?></td>
                                             </tr>
-                                                <?php
-                                            }?>
+                                            <tr>
+                                                <th scope="row">Nombre d echanges</th>
+                                                <td><?php echo $statcount['echanges']?></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

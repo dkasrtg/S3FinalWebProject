@@ -1,3 +1,5 @@
+</div>
+                <!-- Content Wrapper END -->
 <!-- Footer START -->
 <footer class="footer">
                     <div class="footer-content">
